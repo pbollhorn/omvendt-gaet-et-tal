@@ -1,11 +1,7 @@
-body {
-    background-color: orange;
-}
-
 .computer {
-    color: gray;
+  color: blue;
 }
 
 .human {
-    color: blue;
+  color: green;
 }
