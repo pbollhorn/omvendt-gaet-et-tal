@@ -1,4 +1,7 @@
 document
+  .getElementById("startButton")
+  .addEventListener("click", startButtonClick);
+document
   .getElementById("tooLowButton")
   .addEventListener("click", tooLowButtonClick);
 document
@@ -7,6 +10,10 @@ document
 document
   .getElementById("correctButton")
   .addEventListener("click", corectButtonClick);
+
+function startButtonClick() {
+  alert("Hello from start");
+}
 
 function tooLowButtonClick() {
   alert("Hello from tooLow");
