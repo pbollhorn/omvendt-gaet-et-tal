@@ -3,11 +3,21 @@ const startButton = document.getElementById("startButton");
 const tooLowButton = document.getElementById("tooLowButton");
 const tooHighButton = document.getElementById("tooHighButton");
 const correctButton = document.getElementById("correctButton");
-let guessCount;
+startButton.addEventListener("click", startButtonClick);
+tooLowButton.addEventListener("click", tooLowButtonClick);
+tooHighButton.addEventListener("click", tooHighButtonClick);
+correctButton.addEventListener("click", corectButtonClick);
+
+let count;
+let min;
+let max;
+let guess;
 
 function startButtonClick() {
   gameDiv.innerHTML = "";
-  guessCount = 0;
+  count = 0;
+  min = 1;
+  max = 100;
   makeGuess();
   tooLowButton.disabled = false;
   tooHighButton.disabled = false;
@@ -19,6 +29,7 @@ function tooLowButtonClick() {
   p.textContent = `Dig: Det var for lavt`;
   p.className = "human";
   gameDiv.appendChild(p);
+  min = guess + 1;
   makeGuess();
 }
 
@@ -27,6 +38,7 @@ function tooHighButtonClick() {
   p.textContent = `Dig: Det var for højt`;
   p.className = "human";
   gameDiv.appendChild(p);
+  max = guess - 1;
   makeGuess();
 }
 
@@ -41,15 +53,10 @@ function corectButtonClick() {
 }
 
 function makeGuess() {
-  guessCount++;
-  const randomNumber = Math.floor(Math.random() * 100) + 1;
+  count++;
+  guess = Math.floor((max + min) / 2);
   let p = document.createElement("p");
-  p.textContent = `Computerens gæt nr. ${guessCount}: ${randomNumber}`;
+  p.textContent = `Computerens gæt nr. ${count}: ${guess}`;
   p.className = "computer";
   gameDiv.appendChild(p);
 }
-
-startButton.addEventListener("click", startButtonClick);
-tooLowButton.addEventListener("click", tooLowButtonClick);
-tooHighButton.addEventListener("click", tooHighButtonClick);
-correctButton.addEventListener("click", corectButtonClick);
