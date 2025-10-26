@@ -25,22 +25,20 @@ function startButtonClick() {
 }
 
 function tooLowButtonClick() {
-  p = createP("human", "Dig: Det var for lavt");
-  gameDiv.appendChild(p);
+  gameDiv.appendChild(createP("human", "Dig: Det var for lavt"));
   min = guess + 1;
   makeGuess();
 }
 
 function tooHighButtonClick() {
-  p = createP("human", "Dig: Det var for højt");
-  gameDiv.appendChild(p);
+  gameDiv.appendChild(createP("human", "Dig: Det var for højt"));
   max = guess - 1;
   makeGuess();
 }
 
 function corectButtonClick() {
-  p = createP("human", "Dig: Det var korrekt");
-  gameDiv.appendChild(p);
+  gameDiv.appendChild(createP("human", "Dig: Det var korrekt"));
+  gameDiv.appendChild(createP("computer", `Computer: ${evaluateCount()}`));
   tooLowButton.disabled = true;
   tooHighButton.disabled = true;
   correctButton.disabled = true;
@@ -49,8 +47,13 @@ function corectButtonClick() {
 function makeGuess() {
   count++;
   guess = Math.floor((max + min) / 2);
-  p = createP("computer", `Computerens gæt nr. ${count}: ${guess}`);
-  gameDiv.appendChild(p);
+  gameDiv.appendChild(createP("computer", `Computer: Mit gæt nr. ${count} er ${guess}`));
+}
+
+function evaluateCount() {
+  if (count == 1) return "Wow! Jeg gættede rigtigt i første forsøg!";
+
+  return "Jeg var langsomt";
 }
 
 function createP(className, textContent) {
