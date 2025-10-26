@@ -3,11 +3,11 @@ const startButton = document.getElementById("startButton");
 const tooLowButton = document.getElementById("tooLowButton");
 const tooHighButton = document.getElementById("tooHighButton");
 const correctButton = document.getElementById("correctButton");
-let guessNumber;
+let guessCount;
 
 function startButtonClick() {
   gameDiv.innerHTML = "";
-  guessNumber = 0;
+  guessCount = 0;
   makeGuess();
   tooLowButton.disabled = false;
   tooHighButton.disabled = false;
@@ -41,10 +41,10 @@ function corectButtonClick() {
 }
 
 function makeGuess() {
-  guessNumber++;
+  guessCount++;
   const randomNumber = Math.floor(Math.random() * 100) + 1;
   let p = document.createElement("p");
-  p.textContent = `Computerens gæt nr. ${guessNumber}: ${randomNumber}`;
+  p.textContent = `Computerens gæt nr. ${guessCount}: ${randomNumber}`;
   p.className = "computer";
   gameDiv.appendChild(p);
 }
