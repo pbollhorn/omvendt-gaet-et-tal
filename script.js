@@ -1,41 +1,55 @@
-let gameDiv = document.getElementById("gameDiv");
-let guessNumber = 0;
+const gameDiv = document.getElementById("gameDiv");
+const startButton = document.getElementById("startButton");
+const tooLowButton = document.getElementById("tooLowButton");
+const tooHighButton = document.getElementById("tooHighButton");
+const correctButton = document.getElementById("correctButton");
+let guessNumber;
 
 function startButtonClick() {
+  gameDiv.innerHTML = "";
+  guessNumber = 0;
   makeGuess();
+  tooLowButton.disabled = false;
+  tooHighButton.disabled = false;
+  correctButton.disabled = false;
 }
 
 function tooLowButtonClick() {
-  alert("Hello from tooLow");
+  let p = document.createElement("p");
+  p.textContent = `Dig: Det var for lavt`;
+  p.className = "human";
+  gameDiv.appendChild(p);
+  makeGuess();
 }
 
 function tooHighButtonClick() {
-  alert("Hello from tooHigh");
+  let p = document.createElement("p");
+  p.textContent = `Dig: Det var for højt`;
+  p.className = "human";
+  gameDiv.appendChild(p);
+  makeGuess();
 }
 
 function corectButtonClick() {
-  alert("Hello from Correct");
+  let p = document.createElement("p");
+  p.textContent = `Dig: Det var korrekt`;
+  p.className = "human";
+  gameDiv.appendChild(p);
+  tooLowButton.disabled = true;
+  tooHighButton.disabled = true;
+  correctButton.disabled = true;
 }
 
 function makeGuess() {
   guessNumber++;
   const randomNumber = Math.floor(Math.random() * 100) + 1;
   let p = document.createElement("p");
-  p.textContent = `Gæt ${guessNumber}: Computeren gætter på ${randomNumber}`;
+  p.textContent = `Computerens gæt nr. ${guessNumber}: ${randomNumber}`;
+  p.className = "computer";
   gameDiv.appendChild(p);
 }
 
-document
-  .getElementById("startButton")
-  .addEventListener("click", startButtonClick);
-document
-  .getElementById("tooLowButton")
-  .addEventListener("click", tooLowButtonClick);
-document
-  .getElementById("tooHighButton")
-  .addEventListener("click", tooHighButtonClick);
-document
-  .getElementById("correctButton")
-  .addEventListener("click", corectButtonClick);
-
-gameDiv.appendChild(p);
+startButton.addEventListener("click", startButtonClick);
+tooLowButton.addEventListener("click", tooLowButtonClick);
+tooHighButton.addEventListener("click", tooHighButtonClick);
+correctButton.addEventListener("click", corectButtonClick);

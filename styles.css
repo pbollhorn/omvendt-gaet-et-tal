@@ -2,7 +2,10 @@ body {
     background-color: orange;
 }
 
+.computer {
+    color: gray;
+}
 
-h1 {
-    color: red
+.human {
+    color: blue;
 }
