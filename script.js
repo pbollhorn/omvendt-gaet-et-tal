@@ -47,13 +47,29 @@ function corectButtonClick() {
 function makeGuess() {
   count++;
   guess = Math.floor((max + min) / 2);
-  gameDiv.appendChild(createP("computer", `Computer: Mit gæt nr. ${count} er ${guess}`));
+
+  console.log(`count: ${count}`);
+  console.log(`min: ${min}`);
+  console.log(`max: ${max}`);
+  console.log(`guess: ${guess}`);
+  console.log("-------------------")
+
+  if (min > max) {
+    gameDiv.appendChild(
+      createP("computer", `Computer: Jeg er færdig med at gætte!`)
+    );
+    return;
+  }
+
+  gameDiv.appendChild(
+    createP("computer", `Computer: Mit gæt nr. ${count} er ${guess}`)
+  );
 }
 
 function evaluateCount() {
   if (count == 1) return "Wow! Jeg gættede rigtigt i første forsøg!";
-
-  return "Jeg var langsomt";
+  if (count <= 4) return "Jeg gættede det rimeligt hurtigt";
+  return "Jeg fik da gættet det, selvom det ikke var hurtigt";
 }
 
 function createP(className, textContent) {
